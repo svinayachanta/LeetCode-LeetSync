@@ -1,10 +1,9 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        hashmap = {}
-        for i in range(0, len(nums)+1):
-            hashmap[i] = True
-        for i in range(len(nums)):
-            if nums[i] in hashmap:
-                hashmap.pop(nums[i])
-        return list(hashmap.keys())[0]
-        
+        given_array_sum = 0
+        supposed_sum = 0
+        for i in range(1,len(nums)+1):
+            supposed_sum = supposed_sum + i 
+        for i in range(0,len(nums)):
+            given_array_sum = given_array_sum + nums[i]
+        return supposed_sum - given_array_sum
