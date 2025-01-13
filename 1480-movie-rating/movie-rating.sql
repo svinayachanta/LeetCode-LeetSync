@@ -12,7 +12,7 @@ SELECT * FROM (
     SELECT TOP 1 m.title AS results
     FROM movierating mr
     LEFT JOIN movies m ON mr.movie_id = m.movie_id
-    WHERE mr.created_at BETWEEN '2020-02-01' AND '2020-02-29'
+    WHERE mr.created_at LIKE '2020-02%'
     GROUP BY m.title
     ORDER BY AVG(CAST(mr.rating AS FLOAT)) DESC, m.title
 ) b;
