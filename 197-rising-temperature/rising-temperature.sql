@@ -1,6 +1,4 @@
-with cte as(
-select *, lag(temperature, 1) over(order by recordDate) as ptemp, lag(recordDate, 1) over(order by recordDate) as pdate
-from weather)
-
-select id from cte
-where temperature > ptemp and datediff(day, pdate, recordDate) = 1
+select w2.id
+from weather w1
+left join weather w2 on datediff(day, w1.recordDate, w2.recordDate) = 1
+where w1.temperature < w2.temperature
