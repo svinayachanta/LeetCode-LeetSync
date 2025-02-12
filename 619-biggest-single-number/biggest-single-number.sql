@@ -1,9 +1,9 @@
 with cte as (
-    select num, count(num) as cnt
+    select num
     from mynumbers
     group by num
-    having count(num) = 1
+    having count(num) < 2
 )
 
-select max(num) as num
+select top 1 coalesce(max(num), null) as num
 from cte
